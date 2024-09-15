@@ -1,3 +1,5 @@
+import { pushToDataLayer } from '../utils/analytics.js';
+
 export function AppPage(app) {
 	return `
     <div class="container py-3">
@@ -10,12 +12,35 @@ export function AppPage(app) {
               ${app.content}
             </div>
             <div class="app-page-footer-links">
-              <a href="${app.downloadLink}" class="btn btn-primary me-2" target="_blank">Download</a>
-              <a href="/${app.slug}/privacy-policy" class="btn btn-link-custom" rel="noopener noreferrer">Privacy Policy</a>
+              <a href="${app.downloadLink}" class="btn btn-primary me-2 download-btn" target="_blank">Download</a>
+              <a href="/${app.slug}/privacy-policy" class="btn btn-link-custom privacy-policy-btn" rel="noopener noreferrer">Privacy Policy</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   `;
+}
+
+export function setupAppPageEventListeners(appDetails) {
+	const downloadBtn = document.querySelector('.download-btn');
+	const privacyPolicyBtn = document.querySelector('.privacy-policy-btn');
+
+	if (downloadBtn) {
+		downloadBtn.addEventListener('click', () => {
+			pushToDataLayer('app_download_clicked', {
+				app_name: appDetails.name,
+				app_slug: appDetails.slug,
+			});
+		});
+	}
+
+	if (privacyPolicyBtn) {
+		privacyPolicyBtn.addEventListener('click', () => {
+			pushToDataLayer('privacy_policy_viewed', {
+				app_name: appDetails.name,
+				app_slug: appDetails.slug,
+			});
+		});
+	}
 }

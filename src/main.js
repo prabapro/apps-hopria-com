@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import { AppCard } from './components/AppCard.js';
-import { AppPage } from './components/AppPage.js';
+import { AppPage, setupAppPageEventListeners } from './components/AppPage.js';
 import { Header } from './components/Header.js';
 import {
 	loadAppContent,
@@ -33,29 +33,51 @@ function renderHome() {
 
 function renderAppPage(slug) {
 	const appDetails = loadAppDetails(slug);
+	if (!appDetails) {
+		console.error(`App details not found for slug: ${slug}`);
+		// Consider rendering an error page or redirecting to home
+		return;
+	}
 	const main = document.querySelector('main');
 	main.innerHTML = AppPage(appDetails);
+	setupAppPageEventListeners(appDetails);
 }
 
 function renderPrivacyPolicy(slug) {
+	const appDetails = loadAppDetails(slug);
+	if (!appDetails) {
+		console.error(`App details not found for slug: ${slug}`);
+		// Consider rendering an error page or redirecting to home
+		return;
+	}
 	const policyContent = loadPrivacyPolicy(slug);
 	const main = document.querySelector('main');
 	main.innerHTML = `
-    <div class="container py-5">
-      <div class="row">
-        <div class="col-md-8 offset-md-2">
-          <div class="privacy-page-content">
-            <div>
-              ${policyContent}
-            </div>
-            <a href="/${slug}" class="btn btn-primary mt-4">Back to App</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
+	  <div class="container py-5">
+		<div class="row">
+		  <div class="col-md-8 offset-md-2">
+			<div class="privacy-page-content">
+			  <h1>${appDetails.name} Privacy Policy</h1>
+			  <div>
+				${policyContent}
+			  </div>
+			  <a href="/${slug}" class="btn btn-primary mt-4 back-to-app-btn">Back to App</a>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	`;
 
+	// Set up event listener for the "Back to App" button
+	const backToAppBtn = document.querySelector('.back-to-app-btn');
+	if (backToAppBtn) {
+		backToAppBtn.addEventListener('click', (e) => {
+			e.preventDefault();
+			window.history.pushState({}, '', `/${slug}`);
+			handleRoute();
+		});
+	}
+}
 export function handleRoute() {
 	const path = window.location.pathname;
 	const [, slug, page] = path.split('/');
