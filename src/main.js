@@ -44,12 +44,11 @@ function renderPrivacyPolicy(slug) {
     <div class="container py-5">
       <div class="row">
         <div class="col-md-8 offset-md-2">
-          <div class="app-page-content">
-            <h1 class="mb-4">Privacy Policy</h1>
-            <div class="mb-4">
+          <div class="privacy-page-content">
+            <div>
               ${policyContent}
             </div>
-            <a href="/${slug}" class="btn btn-primary">Back to App</a>
+            <a href="/${slug}" class="btn btn-primary mt-4">Back to App</a>
           </div>
         </div>
       </div>

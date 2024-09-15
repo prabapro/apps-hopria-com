@@ -1,80 +1,84 @@
 body {
-  font-family: "Poppins", sans-serif;
-  background-color: #f8f9fa;
-}
-
-.navbar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	font-family: 'Poppins', sans-serif;
+	background-color: #fff;
+	font-size: 0.95em;
+	line-height: normal;
+	color: #626161;
 }
 
 .navbar-brand {
-  font-weight: 600;
-  color: #4a4a4a;
+	font-weight: 600;
+	color: #4a4a4a;
+}
+
+a {
+	color: #9216c8;
+	text-decoration: none;
 }
 
 .card {
-  border: none;
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
+	border: none;
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	border-radius: 12px;
+	overflow: hidden;
+	cursor: pointer;
+	background-color: #e5edf484;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-img-top {
-  height: 200px;
-  object-fit: cover;
+	height: 200px;
+	object-fit: cover;
 }
 
 .card-body {
-  padding: 1.5rem;
+	padding: 1.5rem;
 }
 
 .card-title {
-  font-weight: 600;
-  color: #333;
-}
-
-.card-text {
-  color: #6c757d;
+	font-weight: 600;
+	color: #333;
 }
 
 .badge {
-  font-weight: 500;
-  padding: 0.5em 1em;
-  border-radius: 20px;
+	font-weight: 500;
+	padding: 0.5em 1em;
+	border-radius: 20px;
 }
 
 .btn {
-  border-radius: 20px;
-  padding: 0.5rem 1.5rem;
-  font-weight: 500;
+	border-radius: 20px;
+	padding: 0.5rem 1.5rem;
+	font-weight: 500;
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+	background-color: #ad1deb;
+	border-color: #9216c8;
+}
+
+.btn-link-custom {
+	color: #9216c8;
+	text-decoration: none;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+	background-color: #6e72fc;
+	border-color: #0056b3;
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
+	background-color: #6c757d;
+	border-color: #6c757d;
 }
 
 .btn-secondary:hover {
-  background-color: #5a6268;
-  border-color: #545b62;
+	background-color: #5a6268;
+	border-color: #545b62;
 }
 
 h1,
@@ -83,13 +87,23 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
-  color: #333;
+	font-weight: 600;
+	color: #565656;
 }
 
-.app-page-content {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+ul {
+	margin-bottom: 1.5rem;
+	padding-left: 1rem;
+}
+
+ul > li {
+	margin-bottom: 0.5rem;
+}
+
+.app-page-footer-links {
+	margin: 3rem 0 10rem 0;
+}
+
+.privacy-page-content {
+	margin-bottom: 5em;
 }

@@ -1,7 +1,7 @@
 export function Header() {
 	return `
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-      <div class="container">
+  <div class="container">
+    <nav class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a class="navbar-brand" href="/">Praba's Apps</a>
       </div>
     </nav>
