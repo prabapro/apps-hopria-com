@@ -8,6 +8,7 @@ import {
 	loadAppDetails,
 	loadPrivacyPolicy,
 } from './utils/contentLoader.js';
+import { pushToDataLayer } from './utils/analytics.js';
 
 let apps = loadAppContent();
 
@@ -73,11 +74,17 @@ function renderPrivacyPolicy(slug) {
 	if (backToAppBtn) {
 		backToAppBtn.addEventListener('click', (e) => {
 			e.preventDefault();
+			pushToDataLayer('back_to_app_clicked', {
+				app_name: appDetails.name,
+				app_slug: appDetails.slug,
+				from_page: `/${appDetails.slug}/privacy_policy`,
+			});
 			window.history.pushState({}, '', `/${slug}`);
 			handleRoute();
 		});
 	}
 }
+
 export function handleRoute() {
 	const path = window.location.pathname;
 	const [, slug, page] = path.split('/');
