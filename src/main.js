@@ -14,18 +14,20 @@ let apps = loadAppContent();
 function renderHome() {
 	const main = document.querySelector('main');
 	main.innerHTML = `
-    <div class="container py-5">
-      <h1 class="mb-4 text-center">Discover Amazing Apps.</h1>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="app-grid"></div>
-    </div>
-  `;
+	  <div class="container py-5">
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="app-grid"></div>
+	  </div>
+	`;
 	const appGrid = document.getElementById('app-grid');
 	apps.forEach((app) => {
-		const cardWrapper = document.createElement('div');
-		cardWrapper.className = 'col';
-		const card = AppCard(app);
-		cardWrapper.appendChild(card);
-		appGrid.appendChild(cardWrapper);
+		if (app && app.slug) {
+			// Only create a card if the app data is valid
+			const cardWrapper = document.createElement('div');
+			cardWrapper.className = 'col';
+			const card = AppCard(app);
+			cardWrapper.appendChild(card);
+			appGrid.appendChild(cardWrapper);
+		}
 	});
 }
 
