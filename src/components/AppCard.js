@@ -1,8 +1,6 @@
-import { handleRoute } from '../../main.js';
-
 export function AppCard(app) {
 	const card = document.createElement('div');
-	card.className = 'card h-100';
+	card.className = 'card h-100 clickable-card';
 	card.innerHTML = `
     <img src="${app.logo}" class="card-img-top" alt="${app.name} logo">
     <div class="card-body d-flex flex-column">
