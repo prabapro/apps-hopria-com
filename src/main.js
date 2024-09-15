@@ -58,7 +58,6 @@ function renderPrivacyPolicy(slug) {
 		<div class="row">
 		  <div class="col-md-8 offset-md-2">
 			<div class="privacy-page-content">
-			  <h1>${appDetails.name} Privacy Policy</h1>
 			  <div>
 				${policyContent}
 			  </div>
