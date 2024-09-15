@@ -6,13 +6,18 @@ import appDataPlugin from './vite-plugin-app-data';
 
 function generateInputObject() {
   const srcDir = resolve(__dirname, 'src');
-  const files = fs.readdirSync(srcDir);
-  const input = {};
+  const appsDir = resolve(__dirname, 'content/apps');
+  const input = {
+    main: resolve(srcDir, 'index.html')
+  };
 
-  files.forEach((file) => {
-    if (file.endsWith('.html')) {
-      const name = file.split('.')[0];
-      input[name] = resolve(srcDir, file);
+  const appFiles = fs.readdirSync(appsDir);
+
+  appFiles.forEach((file) => {
+    if (file.endsWith('.md')) {
+      const name = file.replace('.md', '');
+      input[name] = resolve(srcDir, 'index.html');
+      input[`${name}-privacy`] = resolve(srcDir, 'index.html');
     }
   });
 
@@ -40,5 +45,14 @@ export default defineConfig({
   plugins: [
     appDataPlugin(),
     ViteMinifyPlugin({}),
+    {
+      name: 'copy-netlify-redirects',
+      writeBundle() {
+        fs.copyFileSync(
+          resolve(__dirname, 'public/_redirects'),
+          resolve(__dirname, 'dist/_redirects')
+        );
+      }
+    }
   ],
 });
