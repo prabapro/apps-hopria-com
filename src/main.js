@@ -8,21 +8,30 @@ import {
 	loadAppDetails,
 	loadPrivacyPolicy,
 } from './utils/contentLoader.js';
-import { pushToDataLayer } from './utils/analytics.js';
+import { pushToDataLayer, loadGoogleTagManager } from './utils/analytics.js';
 
 let apps = loadAppContent();
+
+// Initialize dataLayer
+window.dataLayer = window.dataLayer || [];
+
+function trackPageView(pagePath, pageTitle) {
+	pushToDataLayer('virtual_page_view', {
+		page_path: pagePath,
+		page_title: pageTitle,
+	});
+}
 
 function renderHome() {
 	const main = document.querySelector('main');
 	main.innerHTML = `
-	  <div class="container py-5">
-		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="app-grid"></div>
-	  </div>
-	`;
+    <div class="container py-5">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="app-grid"></div>
+    </div>
+  `;
 	const appGrid = document.getElementById('app-grid');
 	apps.forEach((app) => {
 		if (app && app.slug) {
-			// Only create a card if the app data is valid
 			const cardWrapper = document.createElement('div');
 			cardWrapper.className = 'col';
 			const card = AppCard(app);
@@ -30,45 +39,42 @@ function renderHome() {
 			appGrid.appendChild(cardWrapper);
 		}
 	});
+	trackPageView('/', 'Home');
 }
 
 function renderAppPage(slug) {
 	const appDetails = loadAppDetails(slug);
 	if (!appDetails) {
 		console.error(`App details not found for slug: ${slug}`);
-		// Consider rendering an error page or redirecting to home
 		return;
 	}
 	const main = document.querySelector('main');
 	main.innerHTML = AppPage(appDetails);
 	setupAppPageEventListeners(appDetails);
+	trackPageView(`/${slug}`, `${appDetails.name} App Page`);
 }
 
 function renderPrivacyPolicy(slug) {
 	const appDetails = loadAppDetails(slug);
 	if (!appDetails) {
 		console.error(`App details not found for slug: ${slug}`);
-		// Consider rendering an error page or redirecting to home
 		return;
 	}
 	const policyContent = loadPrivacyPolicy(slug);
 	const main = document.querySelector('main');
 	main.innerHTML = `
-	  <div class="container py-5">
-		<div class="row">
-		  <div class="col-md-8 offset-md-2">
-			<div class="privacy-page-content">
-			  <div>
-				${policyContent}
-			  </div>
-			  <a href="/${slug}" class="btn btn-primary mt-4 back-to-app-btn">Back to App</a>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	`;
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="privacy-page-content">
+            <div>${policyContent}</div>
+            <a href="/${slug}" class="btn btn-primary mt-4 back-to-app-btn">Back to App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 
-	// Set up event listener for the "Back to App" button
 	const backToAppBtn = document.querySelector('.back-to-app-btn');
 	if (backToAppBtn) {
 		backToAppBtn.addEventListener('click', (e) => {
@@ -76,12 +82,13 @@ function renderPrivacyPolicy(slug) {
 			pushToDataLayer('back_to_app_clicked', {
 				app_name: appDetails.name,
 				app_slug: appDetails.slug,
-				from_page: `/${appDetails.slug}/privacy_policy`,
+				from_page: `/${slug}/privacy-policy`,
 			});
 			window.history.pushState({}, '', `/${slug}`);
 			handleRoute();
 		});
 	}
+	trackPageView(`/${slug}/privacy-policy`, `${appDetails.name} Privacy Policy`);
 }
 
 export function handleRoute() {
@@ -108,6 +115,9 @@ function initApp() {
 
 	const header = document.querySelector('header');
 	if (header) header.innerHTML = Header();
+
+	// Load GTM once at init
+	loadGoogleTagManager();
 
 	handleRoute();
 }
