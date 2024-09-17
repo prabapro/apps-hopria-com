@@ -104,6 +104,67 @@ ul > li {
 	margin: 3rem 0 10rem 0;
 }
 
-.privacy-page-content {
-	margin-bottom: 5em;
+/* Privacy Policy Page */
+#privacy-policy-container {
+	margin: 1rem 0 3em 0;
+	padding: 0 1.25rem;
+}
+
+#privacy-policy-header {
+	margin-bottom: 2rem;
+	border-bottom: 1px solid rgba(209, 141, 141, 0.497);
+
+	h1 {
+		font-size: 2rem;
+	}
+}
+
+.privacy-policy-last-updated {
+	color: rgba(161, 161, 161, 0.868);
+	padding: 1.5rem 0;
+}
+
+#privacy-policy-content {
+	hr {
+		border: none;
+		height: 1px;
+		background-color: rgba(150, 149, 149, 0.976);
+	}
+
+	h2 {
+		font-size: 1.7rem;
+	}
+
+	h3 {
+		font-size: 1.55rem;
+	}
+
+	h4 {
+		font-size: 1.45rem;
+	}
+
+	h5 {
+		font-size: 1.25rem;
+	}
+
+	h6 {
+		font-size: 1.1rem;
+	}
+
+	p {
+		font-size: 1rem;
+		padding: 0.5rem 0;
+	}
+
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		padding-top: 1.5rem;
+	}
+}
+
+#back-to-app-btn {
+	margin: 3rem 0;
 }

@@ -60,19 +60,23 @@ function renderPrivacyPolicy(slug) {
 		console.error(`App details not found for slug: ${slug}`);
 		return;
 	}
-	const policyContent = loadPrivacyPolicy(slug);
+	const { title, updated, content } = appDetails.privacyPolicy;
 	const main = document.querySelector('main');
 	main.innerHTML = `
-    <div class="container py-5">
-      <div class="row">
-        <div class="col-md-8 offset-md-2">
-          <div class="privacy-page-content">
-            <div>${policyContent}</div>
-            <a href="/${slug}" class="btn btn-primary mt-4 back-to-app-btn">Back to App</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="container" class="container py-5">
+		<div id="row" class="row">
+			<div id="content-column" class="col-md-8 offset-md-2">
+				<div id="privacy-policy-container" class="privacy-policy-container">
+					<div id="privacy-policy-header" class="privacy-policy-header">
+					<h1>Privacy Policy for ${title}</h1>
+					<p class="privacy-policy-last-updated">Last updated: <code>${updated}</code></p>
+					</div>
+					<div id="privacy-policy-content" class="privacy-policy-content">${content}</div>
+					<a id="back-to-app-btn" href="/${slug}" class="btn btn-primary back-to-app-btn">Back to App</a>
+				</div>
+			</div>
+		</div>
+	</div>
   `;
 
 	const backToAppBtn = document.querySelector('.back-to-app-btn');
