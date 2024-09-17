@@ -24,7 +24,7 @@ downloadLink:
 `;
 
 const privacyPolicyTemplate = `---
-title: APP_NAME
+title: APP_NAME APP_TYPE
 updated: CURRENT_DATE
 ---
 
