@@ -53,7 +53,7 @@ export function setupHeaderEventListeners() {
 	navLinks.forEach((link) => {
 		link.addEventListener('click', (e) => {
 			const navItem = e.currentTarget.getAttribute('data-nav-item');
-			pushToDataLayer('nav_items_clicked', {
+			pushToDataLayer('nav_item_clicked', {
 				nav_item: navItem,
 				link_url: e.currentTarget.href,
 			});

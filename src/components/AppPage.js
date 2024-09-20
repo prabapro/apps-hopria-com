@@ -31,6 +31,7 @@ export function setupAppPageEventListeners(appDetails) {
 			pushToDataLayer('app_download_clicked', {
 				app_name: appDetails.name,
 				app_slug: appDetails.slug,
+				link_url: downloadBtn.href,
 			});
 		});
 	}
