@@ -227,12 +227,12 @@ ul > li {
 /* Footer */
 footer {
 	flex-shrink: 0;
-	font-size: 0.8rem;
-	color: #6c757d;
+	font-size: 1rem;
+	color: #ababab;
 }
 
 footer a {
-	color: #6c757d;
+	color: #ababab;
 	text-decoration: none;
 }
 
