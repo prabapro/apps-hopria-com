@@ -4,6 +4,7 @@ import './style.css';
 import { AppCard } from './components/AppCard.js';
 import { AppPage, setupAppPageEventListeners } from './components/AppPage.js';
 import { Header, setupHeaderEventListeners } from './components/Header.js';
+import { Footer } from './components/Footer.js';
 import {
 	loadAppContent,
 	loadAppDetails,
@@ -145,6 +146,7 @@ function initApp() {
 	app.innerHTML = `
     <header id="header"></header>
     <main id="main"></main>
+	<footer id="footer"></footer>
   `;
 
 	const header = document.querySelector('header');
@@ -152,6 +154,11 @@ function initApp() {
 		header.innerHTML = Header();
 		initTooltips(); // Initialize tooltips after rendering the header
 		setupHeaderEventListeners(); // Setup event listeners for header nav items
+	}
+
+	const footer = document.querySelector('footer');
+	if (footer) {
+		footer.innerHTML = Footer();
 	}
 
 	// Load GTM once at init
