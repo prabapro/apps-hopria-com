@@ -60,6 +60,7 @@ export function setupHeaderEventListeners() {
 			pushToDataLayer('nav_item_clicked', {
 				nav_item: navItem,
 				link_url: e.currentTarget.href,
+				nav_position: 'header',
 			});
 		});
 	});

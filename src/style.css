@@ -1,9 +1,26 @@
+html,
+body {
+	height: 100%;
+}
+
 body {
 	font-family: 'Poppins', sans-serif;
 	background-color: #fff;
 	font-size: 0.95em;
 	line-height: normal;
 	color: #626161;
+	display: flex;
+	flex-direction: column;
+}
+
+#app {
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
 }
 
 .navbar-brand {
@@ -208,8 +225,8 @@ ul > li {
 }
 
 /* Footer */
-
 footer {
+	flex-shrink: 0;
 	font-size: 0.8rem;
 	color: #6c757d;
 }
