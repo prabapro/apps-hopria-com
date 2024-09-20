@@ -48,10 +48,14 @@ function initTooltips() {
 function renderHome() {
 	const main = document.querySelector('main');
 	main.innerHTML = `
-    <div class="container py-5">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="app-grid"></div>
-    </div>
-  `;
+	  <div class="container py-5">
+		<div class="row">
+		  <div class="col-md-8 offset-md-2">
+			<div class="row row-cols-1 row-cols-md-2 g-4" id="app-grid"></div>
+		  </div>
+		</div>
+	  </div>
+	`;
 	const appGrid = document.getElementById('app-grid');
 	apps.forEach((app) => {
 		if (app && app.slug) {
