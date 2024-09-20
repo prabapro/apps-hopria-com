@@ -8,12 +8,20 @@ import {
 	loadAppDetails,
 	loadPrivacyPolicy,
 } from './utils/contentLoader.js';
-import { pushToDataLayer, loadGoogleTagManager } from './utils/analytics.js';
+import {
+	pushToDataLayer,
+	loadGoogleTagManager,
+	isLocalhost,
+} from './utils/analytics.js';
 
 let apps = loadAppContent();
 
-// Initialize dataLayer
+// Initialize dataLayer with traffic_type
 window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+	event: 'initialize_config',
+	traffic_type: isLocalhost() ? 'developer' : 'production',
+});
 
 function setDocumentTitle(title) {
 	document.title = `${title} | Praba's Apps`;
@@ -128,7 +136,7 @@ function initApp() {
 	const header = document.querySelector('header');
 	if (header) header.innerHTML = Header();
 
-	// Load GTM once at init
+	// Load GTM after initial dataLayer push
 	loadGoogleTagManager();
 
 	handleRoute();
