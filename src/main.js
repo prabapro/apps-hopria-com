@@ -92,8 +92,8 @@ function renderPrivacyPolicy(slug) {
 	const privacyPolicy = loadPrivacyPolicy(slug);
 	const main = document.querySelector('main');
 	main.innerHTML = `
-    <div id="container" class="container py-5">
-		<div id="row" class="row">
+    <div class="container py-2 px-3">
+		<div class="row">
 			<div id="content-column" class="col-md-8 offset-md-2">
 				<div id="privacy-policy-container" class="privacy-policy-container">
 					<div id="privacy-policy-header" class="privacy-policy-header">
