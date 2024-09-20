@@ -8,7 +8,7 @@ export function AppPage(app) {
           <div class="app-page-content">
             <h1 class="mb-4">${app.name}</h1>
             <img src="${app.logo}" class="img-fluid mb-4 rounded" alt="${app.name} logo">
-            <div class="mb-4 app-page-content-body">
+            <div class="mb-4 mt-4 app-page-content-body">
               ${app.content}
             </div>
             <div class="app-page-footer-links">
