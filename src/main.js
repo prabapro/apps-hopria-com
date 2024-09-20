@@ -15,6 +15,11 @@ let apps = loadAppContent();
 // Initialize dataLayer
 window.dataLayer = window.dataLayer || [];
 
+function setDocumentTitle(title) {
+	document.title = `${title} | Praba's Apps`;
+	return document.title;
+}
+
 function trackPageView(pagePath, pageTitle) {
 	pushToDataLayer('virtual_page_view', {
 		page_path: pagePath,
@@ -39,7 +44,8 @@ function renderHome() {
 			appGrid.appendChild(cardWrapper);
 		}
 	});
-	trackPageView('/', 'Home');
+	const pageTitle = setDocumentTitle('Home');
+	trackPageView('/', pageTitle);
 }
 
 function renderAppPage(slug) {
@@ -51,7 +57,8 @@ function renderAppPage(slug) {
 	const main = document.querySelector('main');
 	main.innerHTML = AppPage(appDetails);
 	setupAppPageEventListeners(appDetails);
-	trackPageView(`/${slug}`, `${appDetails.name} App Page`);
+	const pageTitle = setDocumentTitle(appDetails.name);
+	trackPageView(`/${slug}`, pageTitle);
 }
 
 function renderPrivacyPolicy(slug) {
@@ -60,7 +67,7 @@ function renderPrivacyPolicy(slug) {
 		console.error(`App details not found for slug: ${slug}`);
 		return;
 	}
-	const { title, updated, content } = appDetails.privacyPolicy;
+	const privacyPolicy = loadPrivacyPolicy(slug);
 	const main = document.querySelector('main');
 	main.innerHTML = `
     <div id="container" class="container py-5">
@@ -68,10 +75,10 @@ function renderPrivacyPolicy(slug) {
 			<div id="content-column" class="col-md-8 offset-md-2">
 				<div id="privacy-policy-container" class="privacy-policy-container">
 					<div id="privacy-policy-header" class="privacy-policy-header">
-					<h1>Privacy Policy for ${title}</h1>
-					<p class="privacy-policy-last-updated">Last updated: <code>${updated}</code></p>
+					<h1>Privacy Policy for ${appDetails.name}</h1>
+					<p class="privacy-policy-last-updated">Last updated: <code>${privacyPolicy.updated}</code></p>
 					</div>
-					<div id="privacy-policy-content" class="privacy-policy-content">${content}</div>
+					<div id="privacy-policy-content" class="privacy-policy-content">${privacyPolicy.content}</div>
 					<a id="back-to-app-btn" href="/${slug}" class="btn btn-primary back-to-app-btn">Back to App</a>
 				</div>
 			</div>
@@ -92,7 +99,8 @@ function renderPrivacyPolicy(slug) {
 			handleRoute();
 		});
 	}
-	trackPageView(`/${slug}/privacy-policy`, `${appDetails.name} Privacy Policy`);
+	const pageTitle = setDocumentTitle(`${appDetails.name} Privacy Policy`);
+	trackPageView(`/${slug}/privacy-policy`, pageTitle);
 }
 
 export function handleRoute() {

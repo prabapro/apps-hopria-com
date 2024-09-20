@@ -1,10 +1,21 @@
 // analytics.js
 
+function isLocalhost() {
+	return (
+		window.location.hostname === 'localhost' ||
+		window.location.hostname === '127.0.0.1'
+	);
+}
+
 export function pushToDataLayer(eventName, eventData) {
 	window.dataLayer = window.dataLayer || [];
+	const dataToSend = { ...eventData };
+	if (isLocalhost()) {
+		dataToSend.traffic_type = 'developer';
+	}
 	window.dataLayer.push({
 		event: eventName,
-		...eventData,
+		...dataToSend,
 	});
 }
 
