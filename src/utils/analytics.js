@@ -6,18 +6,6 @@ export function isLocalhost() {
 	);
 }
 
-// export function pushToDataLayer(eventName, eventData) {
-// 	window.dataLayer = window.dataLayer || [];
-// 	const dataToSend = { ...eventData };
-// 	if (isLocalhost()) {
-// 		dataToSend.traffic_type = 'developer';
-// 	}
-// 	window.dataLayer.push({
-// 		event: eventName,
-// 		...dataToSend,
-// 	});
-// }
-
 export function pushToDataLayer(eventName, eventData) {
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({

@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Tooltip } from 'bootstrap';
 import './style.css';
 import { AppCard } from './components/AppCard.js';
 import { AppPage, setupAppPageEventListeners } from './components/AppPage.js';
-import { Header } from './components/Header.js';
+import { Header, setupHeaderEventListeners } from './components/Header.js';
 import {
 	loadAppContent,
 	loadAppDetails,
@@ -32,6 +33,15 @@ function trackPageView(pagePath, pageTitle) {
 	pushToDataLayer('virtual_page_view', {
 		page_path: pagePath,
 		page_title: pageTitle,
+	});
+}
+
+function initTooltips() {
+	const tooltipTriggerList = [].slice.call(
+		document.querySelectorAll('[data-bs-toggle="tooltip"]')
+	);
+	tooltipTriggerList.forEach((tooltipTriggerEl) => {
+		new Tooltip(tooltipTriggerEl);
 	});
 }
 
@@ -134,9 +144,13 @@ function initApp() {
   `;
 
 	const header = document.querySelector('header');
-	if (header) header.innerHTML = Header();
+	if (header) {
+		header.innerHTML = Header();
+		initTooltips(); // Initialize tooltips after rendering the header
+		setupHeaderEventListeners(); // Setup event listeners for header nav items
+	}
 
-	// Load GTM after initial dataLayer push
+	// Load GTM once at init
 	loadGoogleTagManager();
 
 	handleRoute();

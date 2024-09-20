@@ -9,7 +9,7 @@ export function AppCard(app) {
       <h5 class="card-title">${app.name}</h5>
       <p class="card-text flex-grow-1">${app.description}</p>
       <div class="mt-auto">
-        <span class="badge bg-primary">${app.type}</span>
+        <span class="badge badge-primary">${app.type}</span>
       </div>
     </div>
   `;

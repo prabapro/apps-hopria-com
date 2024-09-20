@@ -8,7 +8,11 @@ downloadLink: https://chromewebstore.google.com/detail/slt-broadband-usage-check
 
 [![Chrome Web Store Logo](/images/available-in-chrome.png)](https://chromewebstore.google.com/detail/slt-broadband-usage-check/cdmfcngnfgnhddcheambbdjdjmelnoep)
 
+<br>
+
 🔥 Easily check your SLT (Sri Lanka Telecom 🇱🇰) Broadband Usage with just one click.
+
+<br>
 
 - **Secure Access**: Uses your existing MySLT Portal authentication - no separate login required.
 - **Quick Access**: View your data usage directly from your browser toolbar.
