@@ -1,3 +1,4 @@
+// /src/utils/contentLoader.js
 import appData from 'virtual:app-data';
 
 export const loadAppContent = () => appData.filter((app) => app && app.slug);

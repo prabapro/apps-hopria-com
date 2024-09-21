@@ -1,8 +1,10 @@
+// server.js
+
 import { spawn } from 'child_process';
 
 let viteProcess = null;
 
-function startVite() {
+const startVite = () => {
 	if (viteProcess) {
 		viteProcess.kill();
 	}
@@ -14,7 +16,7 @@ function startVite() {
 			console.log(`Vite process exited with code ${code}`);
 		}
 	});
-}
+};
 
 startVite();
 

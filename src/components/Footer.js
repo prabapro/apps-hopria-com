@@ -1,24 +1,24 @@
-// src/components/Footer.js
+// /src/components/Footer.js
 import { pushToDataLayer } from '../utils/analytics.js';
 
-export function Footer() {
+export const Footer = () => {
 	const currentYear = new Date().getFullYear();
 
 	return `
-        <div class="container py-3">
-            <div class="row">
-                <div class="col-md-8 offset-md-2 border-top pt-4 pb-2 px-4">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small>&copy; ${currentYear} - All rights reserved.</small>
-                        <small><a href="/sitemap" class="footer-nav-link" data-nav-item="sitemap">Sitemap</a></small>
-                    </div>
-                </div>
-            </div>
+    <div class="container py-3">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 border-top pt-4 pb-2 px-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <small>&copy; ${currentYear} - All rights reserved.</small>
+            <small><a href="/sitemap" class="footer-nav-link" data-nav-item="sitemap">Sitemap</a></small>
+          </div>
         </div>
-    `;
-}
+      </div>
+    </div>
+  `;
+};
 
-export function setupFooterEventListeners() {
+export const setupFooterEventListeners = () => {
 	const footerLinks = document.querySelectorAll('.footer-nav-link');
 	footerLinks.forEach((link) => {
 		link.addEventListener('click', (e) => {
@@ -30,4 +30,4 @@ export function setupFooterEventListeners() {
 			});
 		});
 	});
-}
+};

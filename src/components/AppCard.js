@@ -1,6 +1,7 @@
+// /src/components/AppCard.js
 import { pushToDataLayer } from '../utils/analytics.js';
 
-export function AppCard(app) {
+export const AppCard = (app) => {
 	const card = document.createElement('div');
 	card.className = 'card h-100 clickable-card';
 	card.innerHTML = `
@@ -27,4 +28,4 @@ export function AppCard(app) {
 	});
 
 	return card;
-}
+};
