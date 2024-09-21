@@ -1,14 +1,25 @@
 import appData from 'virtual:app-data';
 
-export function loadAppContent() {
-  return appData.filter(app => app && app.slug);  // Filter out any invalid entries
-}
+export const loadAppContent = () => appData.filter((app) => app && app.slug);
 
-export function loadAppDetails(slug) {
-  return appData.find(app => app && app.slug === slug);
-}
+export const loadAppDetails = (slug) =>
+	appData.find((app) => app && app.slug === slug);
 
-export function loadPrivacyPolicy(slug) {
-  const app = appData.find(app => app && app.slug === slug);
-  return app ? app.privacyPolicy : '<p>Privacy policy not found.</p>';
-}
+export const loadPrivacyPolicy = (slug) => {
+	const app = appData.find((app) => app && app.slug === slug);
+	return app ? app.privacyPolicy : '<p>Privacy policy not found.</p>';
+};
+
+export const handleScroll = () => {
+	const header = document.querySelector('.sticky-top');
+	const navbar = document.querySelector('.nav-border');
+	if (header && navbar) {
+		if (window.scrollY > 0) {
+			header.classList.add('scrolled');
+			navbar.classList.add('scrolled');
+		} else {
+			header.classList.remove('scrolled');
+			navbar.classList.remove('scrolled');
+		}
+	}
+};
