@@ -1,3 +1,5 @@
+// create-app.js
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -74,29 +76,28 @@ We may update our Privacy Policy from time to time. We will notify you of any ch
 If you have any questions about this Privacy Policy, please write us at: <code>support@apps.prabapro.me</code>
 `;
 
-function createMarkdownFile(dir, filename, content) {
+const createMarkdownFile = (dir, filename, content) => {
 	const filePath = path.join(dir, filename);
 	fs.writeFileSync(filePath, content);
 	console.log(`Created ${filePath}`);
-}
+};
 
-function slugify(str) {
-	return str
+const slugify = (str) =>
+	str
 		.toLowerCase()
 		.replace(/[^a-z0-9]+/g, '-')
 		.replace(/(^-|-$)+/g, '');
-}
 
-function getCurrentDate() {
+const getCurrentDate = () => {
 	const date = new Date();
 	const year = date.getFullYear();
 	const month = date.toLocaleString('default', { month: 'long' });
 	const day = date.getDate();
 	return `${year}, ${month} ${day}`;
-}
+};
 
-function promptAppType() {
-	return new Promise((resolve) => {
+const promptAppType = () =>
+	new Promise((resolve) => {
 		rl.question(
 			'Select the app type:\n1. Browser Extension\n2. Web App\n3. CMS\n4. Others\nEnter the number: ',
 			(answer) => {
@@ -122,9 +123,8 @@ function promptAppType() {
 			}
 		);
 	});
-}
 
-async function main() {
+const main = async () => {
 	const appName = await new Promise((resolve) => {
 		rl.question('Enter the name of the new app: ', resolve);
 	});
@@ -161,6 +161,6 @@ async function main() {
 	console.log(`Remember to add an app logo image at /images/${appSlug}.jpg`);
 
 	rl.close();
-}
+};
 
 main();

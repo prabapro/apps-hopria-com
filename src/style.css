@@ -11,6 +11,7 @@ body {
 	color: #626161;
 	display: flex;
 	flex-direction: column;
+	padding-top: 100px;
 }
 
 #app {
@@ -21,6 +22,11 @@ body {
 
 main {
 	flex: 1 0 auto;
+}
+
+#main {
+	margin-top: -100px; /* Should be the negative of the body's padding-top */
+	padding-top: 100px; /* Should match the body's padding-top */
 }
 
 .navbar-brand {
@@ -159,6 +165,10 @@ ul > li {
 	margin: 5rem 0;
 }
 
+.app-page-content h1 {
+	font-size: 2rem;
+}
+
 /* Privacy Policy Page */
 #privacy-policy-container {
 	margin: 1rem 0 3em 0;
@@ -236,4 +246,60 @@ footer a {
 footer a:hover {
 	color: #45a049;
 	text-decoration: underline;
+}
+
+/* Sticky header styles */
+.sticky-top {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1030;
+}
+
+.sticky-top .navbar {
+	transition: all 0.3s ease;
+}
+
+.sticky-top.scrolled .navbar {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animated gradient border for navbar */
+.nav-border {
+	position: relative;
+	transition: box-shadow 0.3s ease;
+}
+
+.nav-border::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 3px;
+	background: linear-gradient(
+		to right,
+		#ff6b6b,
+		#feca57,
+		#48dbfb,
+		#ff9ff3,
+		#54a0ff
+	);
+	background-size: 500% 100%;
+	animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

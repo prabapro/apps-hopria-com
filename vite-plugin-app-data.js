@@ -1,20 +1,22 @@
+// vite-plugin-app-data.js
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 
-export default function appDataPlugin() {
+const appDataPlugin = () => {
 	const virtualModuleId = 'virtual:app-data';
 	const resolvedVirtualModuleId = '\0' + virtualModuleId;
 
 	return {
 		name: 'app-data',
-		resolveId(id) {
+		resolveId: (id) => {
 			if (id === virtualModuleId) {
 				return resolvedVirtualModuleId;
 			}
 		},
-		load(id) {
+		load: (id) => {
 			if (id === resolvedVirtualModuleId) {
 				const appsDir = path.resolve('content/apps');
 				const policiesDir = path.resolve('content/privacy-policies');
@@ -58,4 +60,6 @@ export default function appDataPlugin() {
 			}
 		},
 	};
-}
+};
+
+export default appDataPlugin;
