@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Tooltip } from 'bootstrap';
 import './style.css';
 import { AppCard } from './components/AppCard.js';
@@ -98,11 +99,13 @@ function renderPrivacyPolicy(slug) {
 			<div id="content-column" class="col-md-8 offset-md-2">
 				<div id="privacy-policy-container" class="privacy-policy-container">
 					<div id="privacy-policy-header" class="privacy-policy-header">
-					<h1>Privacy Policy for ${appDetails.name}</h1>
-					<p class="privacy-policy-last-updated">Last updated: <code>${privacyPolicy.updated}</code></p>
+						<h1>Privacy Policy for ${appDetails.name}</h1>
+						<p class="privacy-policy-last-updated">Last updated: <code>${privacyPolicy.updated}</code></p>
 					</div>
 					<div id="privacy-policy-content" class="privacy-policy-content">${privacyPolicy.content}</div>
-					<a id="back-to-app-btn" href="/${slug}" class="btn btn-primary back-to-app-btn">Back to App</a>
+					<div class = "text-start">
+						<a id="back-to-app-btn" href="/${slug}" class="btn btn-primary back-to-app-btn">Back to App</a>
+					</div>
 				</div>
 			</div>
 		</div>

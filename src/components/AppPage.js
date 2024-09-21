@@ -12,13 +12,13 @@ export function AppPage(app) {
             <div class="mb-4 mt-4 app-page-content-body">
               ${app.content}
             </div>
-            <div class="app-page-footer-links text-center">
-                <div>
+            <div class="app-page-footer-links text-center text-lg-start">
+                <span>
                  <a href="${app.downloadLink}" class="btn btn-primary" target="_blank" data-app-slug="${app.slug}" data-app-name="${app.name}">Download</a>
-                </div>
-                <div class="mt-4">
-                 <a href="/${app.slug}/privacy-policy" class="privacy-policy-link" rel="noopener noreferrer" data-app-slug="${app.slug}" data-app-name="${app.name}">Privacy Policy</a>
-                </div>
+                </span>
+                <span>
+                 <a href="/${app.slug}/privacy-policy" class="privacy-policy-link mx-4" rel="noopener noreferrer" data-app-slug="${app.slug}" data-app-name="${app.name}">Privacy Policy</a>
+                </span>
             </div>
           </div>
         </div>
