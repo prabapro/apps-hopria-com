@@ -116,7 +116,7 @@ function renderPrivacyPolicy(slug) {
 			pushToDataLayer('back_to_app_clicked', {
 				app_name: appDetails.name,
 				app_slug: appDetails.slug,
-				from_page: `/${slug}/privacy-policy`,
+				link_url: backToAppBtn.href,
 			});
 			window.history.pushState({}, '', `/${slug}`);
 			handleRoute();

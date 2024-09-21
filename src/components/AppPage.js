@@ -11,9 +11,13 @@ export function AppPage(app) {
             <div class="mb-4 mt-4 app-page-content-body">
               ${app.content}
             </div>
-            <div class="app-page-footer-links">
-              <a href="${app.downloadLink}" class="btn btn-primary me-2 download-btn" target="_blank">Download</a>
-              <a href="/${app.slug}/privacy-policy" class="btn btn-link-custom privacy-policy-btn" rel="noopener noreferrer">Privacy Policy</a>
+            <div class="app-page-footer-links text-center">
+				<div>
+				 <a href="${app.downloadLink}" class="btn btn-primary" target="_blank">Download</a>
+				</div>
+				<div class="mt-4">
+				 <a href="/${app.slug}/privacy-policy" class="privacy-policy-link" rel="noopener noreferrer">Privacy Policy</a>
+				</div>
             </div>
           </div>
         </div>
@@ -23,12 +27,12 @@ export function AppPage(app) {
 }
 
 export function setupAppPageEventListeners(appDetails) {
-	const downloadBtn = document.querySelector('.download-btn');
-	const privacyPolicyBtn = document.querySelector('.privacy-policy-btn');
+	const downloadBtn = document.querySelector('.btn-primary');
+	const privacyPolicyLink = document.querySelector('.privacy-policy-link');
 
 	if (downloadBtn) {
 		downloadBtn.addEventListener('click', () => {
-			pushToDataLayer('app_download_clicked', {
+			pushToDataLayer('download_button_clicked', {
 				app_name: appDetails.name,
 				app_slug: appDetails.slug,
 				link_url: downloadBtn.href,
@@ -36,12 +40,16 @@ export function setupAppPageEventListeners(appDetails) {
 		});
 	}
 
-	if (privacyPolicyBtn) {
-		privacyPolicyBtn.addEventListener('click', () => {
-			pushToDataLayer('privacy_policy_viewed', {
+	if (privacyPolicyLink) {
+		privacyPolicyLink.addEventListener('click', (e) => {
+			e.preventDefault();
+			pushToDataLayer('privacy_policy_clicked', {
 				app_name: appDetails.name,
 				app_slug: appDetails.slug,
+				link_url: privacyPolicyLink.href,
 			});
+			window.history.pushState({}, '', `/${appDetails.slug}/privacy-policy`);
+			handleRoute();
 		});
 	}
 }
