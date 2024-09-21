@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Tooltip } from 'bootstrap';
 import './style.css';
 import { AppCard } from './components/AppCard.js';
