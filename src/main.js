@@ -137,6 +137,9 @@ export function handleRoute() {
 	} else {
 		renderAppPage(slug);
 	}
+
+	// Reset scroll position after rendering the new page
+	window.scrollTo(0, 0);
 }
 
 function initApp() {
