@@ -4,6 +4,7 @@ import './style.css';
 import { AppCard } from './components/AppCard.js';
 import { AppPage, setupAppPageEventListeners } from './components/AppPage.js';
 import { Header, setupHeaderEventListeners } from './components/Header.js';
+import { Footer, setupFooterEventListeners } from './components/Footer.js';
 import {
 	loadAppContent,
 	loadAppDetails,
@@ -48,10 +49,14 @@ function initTooltips() {
 function renderHome() {
 	const main = document.querySelector('main');
 	main.innerHTML = `
-    <div class="container py-5">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="app-grid"></div>
-    </div>
-  `;
+	  <div class="container py-5">
+		<div class="row">
+		  <div class="col-md-8 offset-md-2">
+			<div class="row row-cols-1 row-cols-md-2 g-4" id="app-grid"></div>
+		  </div>
+		</div>
+	  </div>
+	`;
 	const appGrid = document.getElementById('app-grid');
 	apps.forEach((app) => {
 		if (app && app.slug) {
@@ -88,8 +93,8 @@ function renderPrivacyPolicy(slug) {
 	const privacyPolicy = loadPrivacyPolicy(slug);
 	const main = document.querySelector('main');
 	main.innerHTML = `
-    <div id="container" class="container py-5">
-		<div id="row" class="row">
+    <div class="container py-2 px-3">
+		<div class="row">
 			<div id="content-column" class="col-md-8 offset-md-2">
 				<div id="privacy-policy-container" class="privacy-policy-container">
 					<div id="privacy-policy-header" class="privacy-policy-header">
@@ -111,7 +116,7 @@ function renderPrivacyPolicy(slug) {
 			pushToDataLayer('back_to_app_clicked', {
 				app_name: appDetails.name,
 				app_slug: appDetails.slug,
-				from_page: `/${slug}/privacy-policy`,
+				link_url: backToAppBtn.href,
 			});
 			window.history.pushState({}, '', `/${slug}`);
 			handleRoute();
@@ -132,6 +137,9 @@ export function handleRoute() {
 	} else {
 		renderAppPage(slug);
 	}
+
+	// Reset scroll position after rendering the new page
+	window.scrollTo(0, 0);
 }
 
 function initApp() {
@@ -141,13 +149,20 @@ function initApp() {
 	app.innerHTML = `
     <header id="header"></header>
     <main id="main"></main>
+	<footer id="footer"></footer>
   `;
 
 	const header = document.querySelector('header');
 	if (header) {
 		header.innerHTML = Header();
-		initTooltips(); // Initialize tooltips after rendering the header
-		setupHeaderEventListeners(); // Setup event listeners for header nav items
+		initTooltips();
+		setupHeaderEventListeners();
+	}
+
+	const footer = document.querySelector('footer');
+	if (footer) {
+		footer.innerHTML = Footer();
+		setupFooterEventListeners();
 	}
 
 	// Load GTM once at init

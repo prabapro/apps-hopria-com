@@ -1,4 +1,5 @@
 import { pushToDataLayer } from '../utils/analytics.js';
+import { handleRoute } from '../main.js';
 
 export function AppPage(app) {
 	return `
@@ -11,9 +12,13 @@ export function AppPage(app) {
             <div class="mb-4 mt-4 app-page-content-body">
               ${app.content}
             </div>
-            <div class="app-page-footer-links">
-              <a href="${app.downloadLink}" class="btn btn-primary me-2 download-btn" target="_blank">Download</a>
-              <a href="/${app.slug}/privacy-policy" class="btn btn-link-custom privacy-policy-btn" rel="noopener noreferrer">Privacy Policy</a>
+            <div class="app-page-footer-links text-center">
+                <div>
+                 <a href="${app.downloadLink}" class="btn btn-primary" target="_blank" data-app-slug="${app.slug}" data-app-name="${app.name}">Download</a>
+                </div>
+                <div class="mt-4">
+                 <a href="/${app.slug}/privacy-policy" class="privacy-policy-link" rel="noopener noreferrer" data-app-slug="${app.slug}" data-app-name="${app.name}">Privacy Policy</a>
+                </div>
             </div>
           </div>
         </div>
@@ -22,26 +27,34 @@ export function AppPage(app) {
   `;
 }
 
-export function setupAppPageEventListeners(appDetails) {
-	const downloadBtn = document.querySelector('.download-btn');
-	const privacyPolicyBtn = document.querySelector('.privacy-policy-btn');
+export function setupAppPageEventListeners() {
+	const downloadBtn = document.querySelector('.btn-primary');
+	const privacyPolicyLink = document.querySelector('.privacy-policy-link');
 
 	if (downloadBtn) {
-		downloadBtn.addEventListener('click', () => {
-			pushToDataLayer('app_download_clicked', {
-				app_name: appDetails.name,
-				app_slug: appDetails.slug,
-				link_url: downloadBtn.href,
+		downloadBtn.addEventListener('click', (e) => {
+			const appSlug = e.currentTarget.getAttribute('data-app-slug');
+			const appName = e.currentTarget.getAttribute('data-app-name');
+			pushToDataLayer('download_button_clicked', {
+				app_name: appName,
+				app_slug: appSlug,
+				link_url: e.currentTarget.href,
 			});
 		});
 	}
 
-	if (privacyPolicyBtn) {
-		privacyPolicyBtn.addEventListener('click', () => {
-			pushToDataLayer('privacy_policy_viewed', {
-				app_name: appDetails.name,
-				app_slug: appDetails.slug,
+	if (privacyPolicyLink) {
+		privacyPolicyLink.addEventListener('click', (e) => {
+			e.preventDefault();
+			const appSlug = e.currentTarget.getAttribute('data-app-slug');
+			const appName = e.currentTarget.getAttribute('data-app-name');
+			pushToDataLayer('privacy_policy_clicked', {
+				app_name: appName,
+				app_slug: appSlug,
+				link_url: e.currentTarget.href,
 			});
+			window.history.pushState({}, '', `/${appSlug}/privacy-policy`);
+			handleRoute();
 		});
 	}
 }

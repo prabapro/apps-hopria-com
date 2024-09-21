@@ -1,9 +1,26 @@
+html,
+body {
+	height: 100%;
+}
+
 body {
 	font-family: 'Poppins', sans-serif;
 	background-color: #fff;
 	font-size: 0.95em;
 	line-height: normal;
 	color: #626161;
+	display: flex;
+	flex-direction: column;
+}
+
+#app {
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
 }
 
 .navbar-brand {
@@ -53,9 +70,15 @@ a {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+.card-img-top-wrapper {
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+}
+
 .card-img-top {
-	height: 200px;
 	object-fit: cover;
+	width: 100%;
+	height: 100%;
 }
 
 .card-body {
@@ -75,20 +98,16 @@ a {
 
 .btn {
 	border-radius: 50px;
-	padding: 1rem 3rem;
-	font-weight: 500;
-	text-transform: uppercase;
+	padding: 0.85rem 3rem;
 }
 
 .btn-primary {
-	background-color: #4caf50;
-	border: 5px solid #45a049;
-	font-weight: 700;
+	background-color: black;
+	border: none;
 }
 
 .btn-primary:hover {
-	background-color: #161616e3;
-	border: 5px solid #000;
+	background-color: #4caf50;
 }
 
 .badge-primary {
@@ -96,24 +115,15 @@ a {
 	color: #45a049;
 }
 
-.btn-link-custom {
-	color: #45a049;
-	text-decoration: none;
+.privacy-policy-link {
+	color: rgba(65, 65, 65, 0.688);
+	border-bottom: 1px dashed gray;
+	transition: color 0.3s ease-in-out;
 }
 
-.btn-link-custom:hover {
-	color: #000;
-	text-decoration: underline;
-}
-
-.btn-secondary {
-	background-color: #6c757d;
-	border-color: #6c757d;
-}
-
-.btn-secondary:hover {
-	background-color: #5a6268;
-	border-color: #545b62;
+.privacy-policy-link:hover {
+	color: #4caf50;
+	border-bottom: 1px solid #4caf50;
 }
 
 h1,
@@ -142,7 +152,6 @@ ul > li {
 /* Privacy Policy Page */
 #privacy-policy-container {
 	margin: 1rem 0 3em 0;
-	padding: 0 1.25rem;
 }
 
 #privacy-policy-header {
@@ -200,4 +209,21 @@ ul > li {
 
 #back-to-app-btn {
 	margin: 3rem 0;
+}
+
+/* Footer */
+footer {
+	flex-shrink: 0;
+	font-size: 1rem;
+	color: #ababab;
+}
+
+footer a {
+	color: #ababab;
+	text-decoration: none;
+}
+
+footer a:hover {
+	color: #45a049;
+	text-decoration: underline;
 }
