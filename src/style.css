@@ -52,7 +52,7 @@ main {
 }
 
 .navbar-nav .bi {
-	font-size: 1.2rem;
+	font-size: 1rem;
 }
 
 .navbar-brand .bi {
@@ -112,10 +112,12 @@ a {
 .btn-primary {
 	background-color: black;
 	border: none;
+	transition: background-color 0.3s ease, background-image 0.3s ease;
 }
 
 .btn-primary:hover {
-	background-color: #4caf50;
+	background-color: #70b2d9;
+	background-image: linear-gradient(315deg, #70b2d9 0%, #39e5b6 74%);
 }
 
 .badge-primary {
@@ -216,7 +218,7 @@ ul > li {
 }
 
 #back-to-app-btn {
-	margin: 3rem 0;
+	margin: 3rem 0 2rem 0;
 }
 
 /* Footer */
