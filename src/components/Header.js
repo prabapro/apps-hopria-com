@@ -7,6 +7,7 @@ const profile_twitter = 'https://twitter.com/prabapro';
 const profile_medium = 'https://prabapro.me';
 const profile_stackoverflow =
 	'https://stackoverflow.com/users/3892603/praba-ponnambalam';
+const profile_codechilli = 'https://codechilli.lk';
 
 export const Header = () => {
 	const headerHTML = `
@@ -35,6 +36,9 @@ export const Header = () => {
                   </a>
                   <a class="nav-link px-2" href="${profile_medium}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Medium" data-nav-item="medium">
                     <i class="bi bi-medium"></i>
+                  </a>
+                  <a class="nav-link px-2" href="${profile_codechilli}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Codechilli" data-nav-item="codechilli">
+                    <i class="bi bi-browser-safari"></i>
                   </a>
                 </div>
               </div>
