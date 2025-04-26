@@ -73,7 +73,7 @@ We may update our Privacy Policy from time to time. We will notify you of any ch
 
 ## Contact Us
 
-If you have any questions about this Privacy Policy, please write us at: <code>support@apps.prabapro.me</code>
+If you have any questions about this Privacy Policy, please write us at: <code>hello@hoptira.com</code>
 `;
 
 const createMarkdownFile = (dir, filename, content) => {

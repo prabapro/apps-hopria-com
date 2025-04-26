@@ -7,7 +7,7 @@ const profile_twitter = 'https://twitter.com/prabapro';
 const profile_medium = 'https://prabapro.me';
 const profile_stackoverflow =
 	'https://stackoverflow.com/users/3892603/praba-ponnambalam';
-const profile_codechilli = 'https://codechilli.lk';
+const profile_hoptira = 'https://hoptira.com';
 
 export const Header = () => {
 	const headerHTML = `
@@ -18,8 +18,8 @@ export const Header = () => {
             <div class="col-md-8 offset-md-2">
               <div class="d-flex justify-content-between align-items-center w-100">
                 <a class="navbar-brand d-flex align-items-center" href="/">
-                  <i class="bi bi-tree-fill me-2" style="color: #4CAF50; font-size: 1.5rem;"></i>
-                  <span>Praba's Apps</span>
+                  <i class="bi bi-terminal-fill me-2" style="color: #FF5C7A; font-size: 1.5rem;"></i>
+                  <span>Hoptira Apps</span>
                 </a>
                 <div class="navbar-nav d-flex flex-row">
                   <a class="nav-link px-2" href="${profile_github}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="GitHub" data-nav-item="github">
@@ -37,7 +37,7 @@ export const Header = () => {
                   <a class="nav-link px-2" href="${profile_medium}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Medium" data-nav-item="medium">
                     <i class="bi bi-medium"></i>
                   </a>
-                  <a class="nav-link px-2" href="${profile_codechilli}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Codechilli" data-nav-item="codechilli">
+                  <a class="nav-link px-2" href="${profile_hoptira}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hoptira" data-nav-item="codechilli">
                     <i class="bi bi-browser-safari"></i>
                   </a>
                 </div>

@@ -23,8 +23,8 @@ This project is a Vite-based vanilla JavaScript application designed to showcase
 1. Clone the repository:
 
    ```
-   git clone git@github.com:prabapro/apps-prabapro-me.git
-   cd apps-prabapro-me
+   git clone git@github.com:prabapro/apps-hoptira-com.git
+   cd apps-hoptira-com
    ```
 
 2. Install dependencies:

@@ -2,7 +2,7 @@
 import { Tooltip } from 'bootstrap';
 
 export const setDocumentTitle = (title) => {
-	document.title = `${title} | Praba's Apps`;
+	document.title = `${title} | Hoptira Apps`;
 	return document.title;
 };
 
